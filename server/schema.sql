@@ -19,8 +19,15 @@ CREATE TABLE tareas (
 
 CREATE TABLE share_tareas (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    tareas_id INT,
+    tarea_id INT,
     user_id INT,
-    FOREIGN KEY (tareas_id) REFERENCES tareas(id),
-    FOREIGN KEY (user_id) REFERENCES users(id) 
+    shared_with_id INT,
+    FOREIGN KEY (tarea_id) REFERENCES tareas(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (shared_with_id) REFERENCES users(id) ON DELETE CASCADE,
 );
+
+--INSERTANDO USUARIOS FALSOS
+
+INSERT INTO users (name, email, password) VALUES  ('Luis', 'luis1@example.com', '123456789');
+INSERT INTO users (name, email, password) VALUES  ('Valentin', 'vale@example.com', '123456789');
