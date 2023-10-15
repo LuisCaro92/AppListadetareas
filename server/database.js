@@ -59,7 +59,7 @@ export async function  deleteTareas(id){
     );
 }
 
-export  async function toogleCompleted(id, value){
+export  async function toggleCompleted(id, value){
     const newValue = value === true ? "TRUE" : "FALSE";
     const [result] = await pool.query(
         `UPDATE tareas
