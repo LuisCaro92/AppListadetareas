@@ -12,13 +12,14 @@ const pool = mysql
   .promise();
 
 export async function getTareasById(id) {
-  const [row] = await pool.query(
+  const [rows] = await pool.query(
     `SELECT tareas.*, shared_tareas.shared_with_id
     FROM tareas
     LEFT JOIN shared_tareas ON tareas.id = shared_tareas.shared_with_id
     WHERE tareas.user_id = ? OR shared_tareas.shared_with_id = ?`,
     [id, id]
   );
+  return rows;
 }
 
 export async function getTareas(id) {
